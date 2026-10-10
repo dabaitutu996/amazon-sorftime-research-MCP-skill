@@ -36,7 +36,9 @@ data = raw.get('data', [])
 3. **`mcp__sellersprite__keepa_info`** — 扁平参数 `{"marketplace":"US", "asin":"B0XXX"}`
    - 返回 `buyBox` 是 `[{timePoint, value}]` 数组，取最后一项为当前价
    - `bsr` 同理取 `[{timePoint, value}]` 格式
-4. **`mcp__sellersprite__traffic_source`** — `{"request": {"marketplace":"US", "asin":"B0XXX"}}`
+4. **`mcp__sellersprite__traffic_source`** — **扁平参数** + `"q":"asin"`：`{"marketplace":"US", "asin":"B0XXX", "q":"asin"}`
+   - ⚠️ 实测：文档标为 `request` 嵌套，但实际 API 要求**扁平参数** + `q` 字段，否则 HTTP 200 但返回 `q is required`
+   - ⚠️ 该工具有已知缺陷，可能返回不相关商品；取不到数据时须有 fallback，不要编造
 
 ### 第3步: 辅助数据
 

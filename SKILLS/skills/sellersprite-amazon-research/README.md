@@ -86,7 +86,7 @@ Comprehensive workflows accessible via slash commands:
 | `/product-research` | Smart product discovery with advanced filters | `product_research` + `product_node` |
 | `/market-analysis` | Full market panorama across 13 dimensions | `market_research` + 12 distribution tools |
 | `/competitor-analysis` | Deep ASIN competitive decomposition | `asin_detail` + `traffic_keyword` |
-| `/keyword-research` | Keyword-based product research | `keyword_research` + `keyword_miner` |
+| `/keyword-research` | Keyword-based product research | `keyword_miner` + `keyword_research_trends` |
 | `/listing-optimizer` | Listing quality diagnosis & optimization | `traffic_listing` + `keyword_order` |
 | `/traffic-analysis` | Traffic source decomposition | `traffic_source` + `traffic_keyword_stat` |
 | `/opportunity-finder` | Blue ocean opportunity discovery | `aba_research_trend` + `google_trend` |

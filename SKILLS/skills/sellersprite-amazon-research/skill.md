@@ -1,6 +1,6 @@
 ---
 name: sellersprite-amazon-research
-description: 卖家精灵 Amazon 全链路数据调研 Skill。通过 43 个 MCP 数据工具完成选品分析、关键词研究、竞品监控、市场分析、定价策略、评论分析、广告优化、流量分析、Listing 优化和蓝海机会挖掘。触发场景：(1) 用户询问 Amazon 选品/市场/竞品分析 (2) 用户输入 /product-research, /market-analysis, /competitor-analysis, /keyword-research, /listing-optimizer, /traffic-analysis, /opportunity-finder, /review-insights, /pricing-strategy, /ad-optimizer 等命令 (3) 用户提及新品爆发、隐形爆款、ABA 增长词、低品牌垄断、评论分析等选品策略。适用于跨境电商卖家、Amazon 运营和产品开发决策。
+description: 卖家精灵 Amazon 全链路数据调研 Skill。通过 43 个 MCP 数据工具完成选品分析、关键词研究、竞品监控、市场分析、定价策略、评论分析、广告优化、流量分析、Listing 优化和蓝海机会挖掘。触发场景：(1) 用户询问 Amazon 选品/市场/竞品分析 (2) 用户输入 /product-research, /market-analysis, /competitor-analysis, /keyword-research, /listing-optimizer, /traffic-analysis, /opportunity-finder, /review-insights, /pricing-strategy, /ad-optimizer 等命令 (3) 用户提及以下任一战术策略卡名称：新品快速爆发、隐形爆款、ABA 高增长趋势词、流量分散关键词、标题密度漏洞、热销低评分产品、评论语义分析、低品牌垄断类目、高新品占比市场、高毛利轻小品、自然流量反查、变体拆解模型、本土溢价降维、FBM 拦截、低质量 Listing 高销量、高客单长尾、季节前置爆破。适用于跨境电商卖家、Amazon 运营和产品开发决策。
 ---
 
 # 卖家精灵 Amazon 数据调研
@@ -235,7 +235,7 @@ clean_title = html.unescape(raw_title)
 | `/product-research` | 智能选品助手 | `product_research` + `product_node` | `comprehensive/product-research.md` |
 | `/market-analysis` | 市场全景分析 | `market_research` + 分布工具集 | `comprehensive/market-analysis.md` |
 | `/competitor-analysis` | 竞品深度拆解 | `asin_detail` + `traffic_keyword` | `comprehensive/competitor-analysis.md` |
-| `/keyword-research` | 关键词选品研究 | `keyword_research` + `keyword_miner` | `comprehensive/keyword-research.md` |
+| `/keyword-research` | 关键词选品研究 | `keyword_miner` + `keyword_research_trends` | `comprehensive/keyword-research.md` |
 | `/listing-optimizer` | Listing 优化诊断 | `traffic_listing` + `keyword_order` | `comprehensive/listing-optimizer.md` |
 | `/traffic-analysis` | 流量结构分析 | `traffic_source` + `traffic_keyword_stat` | `comprehensive/traffic-analysis.md` |
 | `/opportunity-finder` | 蓝海机会挖掘 | `aba_research_trend` + `google_trend` | `comprehensive/opportunity-finder.md` |
@@ -258,7 +258,7 @@ clean_title = html.unescape(raw_title)
 ### 关键词趋势型
 | 策略 | 核心工具 | 逻辑 | 详见 |
 |------|----------|------|------|
-| ABA 高增长趋势词 | `keyword_research` | 近3月持续增长+点击不集中 | `tactical/aba-high-growth-trend.md` |
+| ABA 高增长趋势词 | `keyword_miner` | 近3月持续增长+点击不集中 | `tactical/aba-high-growth-trend.md` |
 | 流量分散关键词 | `keyword_miner` | 搜索≥5000+集中度<50% | `tactical/low-monopoly-keyword.md` |
 | 标题密度漏洞 | `keyword_miner` | 标题密度≤5的长尾词 | `tactical/title-density-gap.md` |
 
