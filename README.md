@@ -23,11 +23,11 @@
 ├── .claude/
 │   └── skills/
 │       └── sellersprite-amazon-research/
-│           ├── skill.md              # 技能主入口（frontmatter + 指令 + 字段陷阱）
+│           ├── SKILL.md              # 技能主入口（frontmatter + 指令 + 字段陷阱）
 │           ├── README.md             # 技能英文说明
 │           ├── comprehensive/        # 10 个综合分析工作流
 │           ├── tactical/             # 17 张战术选品策略卡
-│           └── reference/            # MCP 工具参数参考（含 43 工具清单）
+│           └── reference/            # MCP 工具参数参考（43 工具清单）+ HTML 报告设计系统
 └── README.md                         # 本文件
 ```
 

@@ -7,7 +7,7 @@
 `mcp__sellersprite__keyword_research_trends` — 扁平参数 `{"marketplace":"US", "keyword":"..."}`
 
 > ⚠️ **不要用 `keyword_research`**：该工具会**忽略 `keyword` 参数**，返回按搜索量排序的全局关键词，与种子词无关
-> （见 `skill.md`「常见故障排查」：`返回不相关数据` → 改用 `keyword_miner` 替代）。
+> （见 `SKILL.md`「常见故障排查」：`返回不相关数据` → 改用 `keyword_miner` 替代）。
 > 本卡筛选用的 `monopolyClickRate` / `supplyDemandRatio` 也都在 `keyword_miner` 的响应字段里。
 
 ## 筛选逻辑

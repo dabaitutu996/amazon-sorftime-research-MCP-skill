@@ -26,7 +26,7 @@
 ### 第2步: 关键词研究（竞争度 / 增长率字段）
 
 > ⚠️ **不要用 `keyword_research` 传种子词** —— 该工具会**忽略 `keyword` 参数**，返回按搜索量排序的全局关键词，
-> 与种子词无关（见 `skill.md`「常见故障排查」：`返回不相关数据` → 改用 `keyword_miner` 替代）。
+> 与种子词无关（见 `SKILL.md`「常见故障排查」：`返回不相关数据` → 改用 `keyword_miner` 替代）。
 
 调用 `mcp__sellersprite__keyword_miner` 取竞争度字段（`monopolyClickRate`/`supplyDemandRatio`/`titleDensity`/`bid`）：
 - 参数：`{"request": {"marketplace":"US", "keyword":"种子词"}}`

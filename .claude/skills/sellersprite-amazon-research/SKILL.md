@@ -253,6 +253,7 @@ API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实�
 | `reference/keyword_miner.md` | `keyword_miner` + `keyword_research` | ✅ |
 | `reference/asin_detail.md` | `asin_detail` + `keepa_info` 等 ASIN 工具 | |
 | `reference/tools_index.md` | 全部 42 个工具清单 + 参数模式 | ✅ 已更新 |
+| `reference/report-html-design.md` | HTML 报告设计系统（主题 token / 字体 / 组件 / print） | ✅ |
 
 ---
 
@@ -265,7 +266,7 @@ API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实�
 1. **数据源** — 以刚完成的 `market_report.md` 为数据源，不额外调 API
 2. **全面展示** — 覆盖报告的每个核心维度（概览、销量、流量、关键词、竞争、市场、评论、价格、SWOT、行动建议）
 3. **图表呈现** — 关键数据用 Canvas 图表展示（价格/BSR 趋势、对比柱状图、趋势线等）
-4. **设计风格** — 深色专业主题、配色统一、响应式适配、交互流畅
+4. **设计风格** — **必须遵循 `reference/report-html-design.md` 的设计系统**（主题 token / 字体配对 / 组件规范 / print 样式）：默认"墨黑专业"预设、单一锚点色、无渐变/重阴影/emoji、响应式、可打印成 PDF
 5. **输出** — 保存到与 MD 相同的目录 `{类别名}/market_report.html`
 
 > 如果用户明确说"不需要 HTML"可以跳过，否则必须生成。
@@ -484,10 +485,26 @@ API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实�
 | 19 | **筛查口径已记录** | 报告中必须标注：调用工具列表、数据月份、ASIN/关键词、采样说明 |
 | 20 | **数据质量警告** | 数据异常处必须使用 ⚠️ 标注（参考 7.8 节） |
 
-### 8.5 发布前最终确认
+### 8.5 HTML 可视化报告检查（设计系统）
 
-- [ ] 以上 20 项检查已逐项通过
+> 生成 `market_report.html` 后逐项确认，完整规范见 `reference/report-html-design.md`。
+
+| # | 检查项 | 说明 |
+|---|--------|------|
+| 21 | **遵循设计系统** | 使用 `reference/report-html-design.md` 的主题 token，而非临时自造配色 |
+| 22 | **单一锚点色** | 一份报告只用 1 个 accent；图表系列取 `--c1..--c6` |
+| 23 | **无装饰滥用** | 无渐变 / 重阴影 / 玻璃拟态 / emoji |
+| 24 | **数字对齐** | 数字/百分比列用等宽字体 + 右对齐；千分位/小数位符合 §8.4 |
+| 25 | **数据警告可见** | ⚠️ 项有左侧色条或浅色底，非仅靠文字 |
+| 26 | **可打印** | 含 `print-color-adjust` 与 `@media print`，可"另存为 PDF"不丢色 |
+| 27 | **单文件离线** | 无外链字体/JS/CDN，断网可打开 |
+| 28 | **响应式** | 720px 宽度下表格不溢出（横向滚动或单列） |
+
+### 8.6 发布前最终确认
+
+- [ ] 以上 28 项检查已逐项通过（含 §8.5 设计系统检查）
 - [ ] `research_data.json` 已保存且包含所有 API 原始返回
 - [ ] 报告包含筛选口径、KPI 摘要、多维分析、分级结论四要素
 - [ ] 无仅打印到控制台的调试输出
 - [ ] **`market_report.html` 已生成** — 在 `market_report.md` 同级目录，包含图表可视化
+- [ ] **HTML 遵循 `reference/report-html-design.md` 设计系统** — 单一锚点色、无渐变/重阴影、含 print 样式（可打印成 PDF）

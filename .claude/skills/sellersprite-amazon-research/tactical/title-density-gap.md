@@ -13,7 +13,7 @@
 低标题密度词表 + 搜索量 + 建议埋词位置
 
 ## 注意
-⚠️ **不要用 `keyword_research` 验证需求趋势** —— 该工具会忽略 `keyword` 参数（见 `skill.md` 常见故障排查）。
+⚠️ **不要用 `keyword_research` 验证需求趋势** —— 该工具会忽略 `keyword` 参数（见 `SKILL.md` 常见故障排查）。
 改用 `keyword_research_trends`（**扁平参数**，字段 `time`/`search`/`chainGrowth`/`yearlyGrowth`）。
 
 ## 空结果处理

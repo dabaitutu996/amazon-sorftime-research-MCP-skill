@@ -5,7 +5,7 @@
 ## 工具
 `mcp__sellersprite__keyword_miner` — `{"request": {...}}`
 
-> ⚠️ **不要用 `keyword_research`** —— 该工具会忽略 `keyword` 参数、返回全局热词（见 `skill.md`「常见故障排查」）。
+> ⚠️ **不要用 `keyword_research`** —— 该工具会忽略 `keyword` 参数、返回全局热词（见 `SKILL.md`「常见故障排查」）。
 > 本卡需要的 `avgPrice` / `searches` 都是 `keyword_miner` 的响应字段。
 
 ## 筛选
