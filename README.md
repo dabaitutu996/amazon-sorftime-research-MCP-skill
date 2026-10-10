@@ -29,8 +29,7 @@
 │           ├── tactical/             # 17 张战术选品策略卡
 │           ├── reference/            # MCP 工具参数参考（含 43 工具清单）
 │           └── scripts/              # 示例/工具脚本（非必需）
-└── REPORTS-ALL/
-    └── 卖家精灵reports/              # 示例报告
+└── README.md                         # 本文件
 ```
 
 ---
