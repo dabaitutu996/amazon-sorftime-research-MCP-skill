@@ -2,8 +2,9 @@
 """Helper to call sellersprite MCP tools - fixed encoding"""
 import sys, json, urllib.request, urllib.error, os
 
-SECRET_KEY = ""
-URL = "https://mcp.sellersprite.com/mcp"
+# --- 配置（用环境变量覆盖，避免硬编码密钥）---
+SECRET_KEY = os.environ.get("SELLERSPRITE_SECRET_KEY", "")
+URL = os.environ.get("SELLERSPRITE_MCP_URL", "https://mcp.sellersprite.com/mcp")
 
 # Force UTF-8
 sys.stdout.reconfigure(encoding='utf-8')

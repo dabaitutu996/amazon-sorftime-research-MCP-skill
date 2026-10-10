@@ -47,4 +47,7 @@ Thumbs.db
 # API Keys and secrets
 .env
 .env.local
+
+# SellerSprite script output (generated reports / raw data)
+scripts/output/
 /西柚洞察

@@ -3,10 +3,14 @@
 import sys, json, urllib.request, time, os
 from datetime import datetime
 
-SECRET_KEY = ""
-URL = "https://mcp.sellersprite.com/mcp"
-OUT_DIR = "D:/sellersprite-skills/lavalier-microphones"
-NODE_ID = "11091801:11974521:8882489011:11974711:11974761"
+# --- 配置（用环境变量覆盖，避免硬编码路径/密钥）---
+SECRET_KEY = os.environ.get("SELLERSPRITE_SECRET_KEY", "")
+URL = os.environ.get("SELLERSPRITE_MCP_URL", "https://mcp.sellersprite.com/mcp")
+OUT_DIR = os.environ.get(
+    "SELLERSPRITE_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "output"),
+)
+NODE_ID = os.environ.get("SELLERSPRITE_NODE_ID", "11091801:11974521:8882489011:11974711:11974761")
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
@@ -55,7 +59,11 @@ def fmt_pct(n, is_ratio=True):
     return f"{n:.1f}%"
 
 # ======= Load existing data =======
-with open('D:/sellersprite-skills/wirelessinstruments/research_data.json', encoding='utf-8') as f:
+PARENT_DATA = os.environ.get(
+    "SELLERSPRITE_PARENT_DATA",
+    os.path.join(os.path.dirname(OUT_DIR), "wirelessinstruments", "research_data.json"),
+)
+with open(PARENT_DATA, encoding='utf-8') as f:
     parent_data = json.load(f)
 
 with open(f'{OUT_DIR}/keyword_data.json', encoding='utf-8') as f:

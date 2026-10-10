@@ -3,10 +3,14 @@
 import sys, json, urllib.request, time, os
 from datetime import datetime
 
-SECRET_KEY = ""
-URL = "https://mcp.sellersprite.com/mcp"
-OUT_DIR = "D:/sellersprite-skills/lavalier-microphones"
-ASIN = "B0CMJTSVRW"
+# --- 配置（用环境变量覆盖，避免硬编码路径/密钥）---
+SECRET_KEY = os.environ.get("SELLERSPRITE_SECRET_KEY", "")
+URL = os.environ.get("SELLERSPRITE_MCP_URL", "https://mcp.sellersprite.com/mcp")
+OUT_DIR = os.environ.get(
+    "SELLERSPRITE_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "output"),
+)
+ASIN = os.environ.get("SELLERSPRITE_ASIN", "B0CMJTSVRW")
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')

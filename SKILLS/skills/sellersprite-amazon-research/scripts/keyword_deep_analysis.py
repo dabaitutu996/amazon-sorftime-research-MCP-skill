@@ -4,7 +4,11 @@ import sys, json, os
 from datetime import datetime
 from collections import Counter
 
-OUT_DIR = "D:/sellersprite-skills/lavalier-microphones"
+# --- 配置（用环境变量覆盖，避免硬编码路径）---
+OUT_DIR = os.environ.get(
+    "SELLERSPRITE_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "output"),
+)
 
 sys.stdout.reconfigure(encoding='utf-8')
 

@@ -21,9 +21,9 @@
 | `minRatings/maxRatings` | int | 评分数区间 |
 | `minRatingsCv` | int | 月新增评分数 |
 | `minUnitsCr` | float | 月销量增长率 |
-| `minFba` | float | 最低 FBA 运费 |
-| `minLqs` | int | Listing 质量分 |
-| `minProfit/maxProfit` | float | 利润区间 |
+| `minFba/maxFba` | float | FBA 运费区间（`maxFba:4` = FBA 费 ≤$4） |
+| `minLqs/maxLqs` | int | Listing 质量分区间（`minLqs`=下限 ≥，`maxLqs`=上限 ≤） |
+| `minProfit/maxProfit` | float | 利润区间（**0~1 比率**，`0.5` = 50%） |
 | `fulfillment` | string | FBA,FBM,AMZ（逗号字符串） |
 | `includeBrands/excludeBrands` | string | 品牌白/黑名单（逗号字符串） |
 | `includeSellers/excludeSellers` | string | 卖家白/黑名单（逗号字符串） |
@@ -48,3 +48,7 @@
 1. 响应字段读 MCP 名（units/revenue/ratings/bsr），不用网页 API 名
 2. 当前月 `units/revenue` 可能为 None，取最近自然月
 3. 黑白名单/配送方式传逗号字符串；badges 传 "Y"
+4. **`min*` / `max*` 是区间两端**：`min` = 下限（≥），`max` = 上限（≤）。
+   找"低 LQS"要用 `maxLqs`，**不是** `minLqs`（`minLqs:60` 会筛出高质量 Listing，方向相反）
+5. **上架时间不是请求参数** —— 无法用 `product_research` 按"上架 ≤ N 月"筛选，
+   只能在客户端过滤响应里的上架日期字段；市场级上架时间分布用 `market_listing_date_distribution`

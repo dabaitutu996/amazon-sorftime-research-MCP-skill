@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 """Fix keyword report - correct field names"""
-import sys, json
+import sys, json, os
 from datetime import datetime
 
 sys.stdout.reconfigure(encoding='utf-8')
-OUT_DIR = "D:/sellersprite-skills/lavalier-microphones"
+
+# --- 配置（用环境变量覆盖，避免硬编码路径）---
+OUT_DIR = os.environ.get(
+    "SELLERSPRITE_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "output"),
+)
 
 with open(f"{OUT_DIR}/keyword_data.json", encoding='utf-8') as f:
     data = json.load(f)

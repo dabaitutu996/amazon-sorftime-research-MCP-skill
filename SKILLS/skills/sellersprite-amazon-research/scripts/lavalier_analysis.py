@@ -3,14 +3,18 @@
 import sys, json, urllib.request, urllib.error, os, time
 from datetime import datetime
 
-SECRET_KEY = ""
-URL = "https://mcp.sellersprite.com/mcp"
+# --- 配置（用环境变量覆盖，避免硬编码路径/密钥）---
+SECRET_KEY = os.environ.get("SELLERSPRITE_SECRET_KEY", "")
+URL = os.environ.get("SELLERSPRITE_MCP_URL", "https://mcp.sellersprite.com/mcp")
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
 
-NODE_ID = "11091801:11974521:8882489011:11974711:11974761"
-OUT_DIR = "D:/sellersprite-skills/lavalier-microphones"
+NODE_ID = os.environ.get("SELLERSPRITE_NODE_ID", "11091801:11974521:8882489011:11974711:11974761")
+OUT_DIR = os.environ.get(
+    "SELLERSPRITE_OUT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "output"),
+)
 
 def call_tool(name: str, arguments: dict):
     payload = json.dumps({
