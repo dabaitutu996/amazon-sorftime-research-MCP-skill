@@ -1,34 +1,12 @@
 {
   "mcpServers": {
-     
-    "sorftime": {
-      "type": "streamableHttp",
-      "url": "https://mcp.sorftime.com?key=vte0nhg2sexwc",
-      "name": "Sorftime MCP",
-      "description": "Sorftime 跨境电商平台数据服务。已支持亚马逊14大站点、Tiktok 6大站点、以1688供应链平台。"
-    },
-    "sif-mcp": {
-      "type": "http",
-      "url": "https://mcp.sif.com/mcp",
-      "headers": {
-        "secret-key": "sifmcp260611p9fapnf"
-      }
-    },
-    "xydc-mcp": {
-      "type": "http",
-      "url": "https://mcp.xydc.com/mcp",
-      "headers": {
-        "Authorization": "Bearer mcp_80c05d7a5b0c"
-      },
-      "name": "西柚洞察MCP",
-      "description": "西柚洞察跨境电商数据服务，提供ASIN流量分析、关键词竞争、广告策略等功能。"
-    },
     "sellersprite": {
       "url": "https://mcp.sellersprite.com/mcp",
       "headers": {
         "secret-key": "eaf4c0d6e8284d12"
       },
-      "name": "卖家精灵MCP"
+      "name": "卖家精灵MCP",
+      "description": "卖家精灵 Amazon 全链路数据服务：选品分析、关键词研究、竞品监控、市场分析、定价策略、评论分析、广告优化、流量分析、Listing 优化和蓝海机会挖掘。"
     }
   }
 }
