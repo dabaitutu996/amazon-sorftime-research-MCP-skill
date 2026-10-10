@@ -156,14 +156,12 @@ Comprehensive workflows accessible via slash commands:
 │   ├── hidden-bestseller.md
 │   ├── hot-low-rating.md
 │   └── ...
-├── reference/                        # MCP tool parameter references
-│   ├── tools_index.md                # Full 43-tool catalog
-│   ├── product_research.md
-│   ├── market_research.md
-│   ├── asin_detail.md
-│   └── ...
-└── scripts/                          # Utility scripts
-    └── mcp_call.py                   # MCP API caller (Python)
+└── reference/                        # MCP tool parameter references
+    ├── tools_index.md                # Full 43-tool catalog
+    ├── product_research.md
+    ├── market_research.md
+    ├── asin_detail.md
+    └── ...
 ```
 
 ## MCP Tool Catalog

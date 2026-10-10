@@ -14,11 +14,7 @@
 
 **参数模式**：`request` 嵌套对象 — 所有参数包裹在 `request` 键下。
 
-**响应解析**：`result.content[0].text` 是 JSON 字符串，需二次解析：
-```python
-raw = json.loads(result['content'][0]['text'])
-data = raw.get('data', [])
-```
+**响应解析**：`result.content[0].text` 是 JSON 字符串，需**二次解析**——先解析外层 JSON-RPC 得到 `content[0].text`，再解析该字符串取出真正的数据（通常在 `data` 字段）。
 
 ## 执行步骤
 

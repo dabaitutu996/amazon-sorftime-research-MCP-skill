@@ -31,50 +31,13 @@ description: 卖家精灵 Amazon 全链路数据调研 Skill。通过 43 个 MCP
 
 ## 工具调用方式
 
-### 方式 A：通过 MCP 客户端（推荐）
-
-MCP 客户端直接调用工具：
+通过 MCP 客户端直接调用工具：
 
 ```
 mcp__sellersprite__<tool_name>
 ```
 
 例: `mcp__sellersprite__product_research`
-
-### 方式 B：通过 curl（无 MCP 客户端时备用）
-
-```bash
-curl -s -X POST "https://mcp.sellersprite.com/mcp" \
-  -H "Content-Type: application/json" \
-  -H "secret-key: <YOUR_KEY>" \
-  -d '{
-    "jsonrpc": "2.0", "id": 1, "method": "tools/call",
-    "params": {
-      "name": "<tool_name>",
-      "arguments": { <扁平参数或{"request":{...}}> }
-    }
-  }'
-```
-
-### 方式 C：通过 Python（批量调用场景）
-
-```python
-import json, urllib.request
-payload = json.dumps({"jsonrpc":"2.0","id":1,"method":"tools/call",
-    "params":{"name":"market_research","arguments":{"request":{
-        "marketplace":"US","nodeIdPath":"...","topNum":10}}}}).encode()
-req = urllib.request.Request("https://mcp.sellersprite.com/mcp", data=payload,
-    headers={"Content-Type":"application/json","secret-key":"<KEY>"})
-with urllib.request.urlopen(req) as resp:
-    data = json.loads(resp.read().decode('utf-8'))
-    result = json.loads(data['result']['content'][0]['text'])
-```
-
-### 方式 D：通过 mcp_call.py 工具脚本（项目内预置）
-
-```bash
-python3 mcp_call.py <tool_name> '{"param1":"value1"}'
-```
 
 ---
 
@@ -176,13 +139,7 @@ product_node 返回的 `nodeLabelLocale`（中文翻译）**不可靠**，常见
 | `market_price_distribution` | `{ items: [...] }`（嵌套） | 价格区间在 `items` |
 | `product_node` | `[{...}]`（直接数组） | 节点列表直接返回 |
 
-**安全取值**：
-```python
-def safe_items(data):
-    if isinstance(data, dict): return data.get('items', [])
-    if isinstance(data, list): return data
-    return []
-```
+**安全取值**：不同工具返回结构不同——`dict` 类型取 `items` 字段，`list` 类型直接使用；取不到时返回空列表。
 
 ### ⚠️ 实际 API 响应字段陷阱（实测发现，与文档不一致）
 
@@ -208,21 +165,12 @@ def safe_items(data):
 - 情感分析和差评主题也要加"基于样本"限定
 
 ### keepa 时间序列数据提取
-keepa_info 返回的价格/BSR 均为 `[{timePoint: timestamp, value: number}]` 格式数组：
-```python
-price_data = keepa.get('buyBox', [])
-if price_data:
-    prices = [p['value'] for p in price_data if p.get('value', 0) > 10]
-    current_price = prices[-1] if prices else 'N/A'
-    avg_price = sum(prices)/len(prices) if prices else 'N/A'
-```
+`keepa_info` 返回的价格/BSR 均为 `[{timePoint, value}]` 时间序列数组：
+- 当前价 = `buyBox` 数组**最后一个** `value`；当前 BSR = `bsr` 数组最后一个 `value`
+- 求均价/均值时，先过滤掉异常小值（如 `< 10`）再计算
 
 ### HTML 实体解码
-API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实体，必须解码：
-```python
-import html
-clean_title = html.unescape(raw_title)
-```
+API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实体，**必须解码**（`&amp;`→`&`、`&quot;`→`"`、`&lt;`→`<`）后再展示。
 
 ---
 

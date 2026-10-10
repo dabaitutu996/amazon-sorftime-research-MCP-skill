@@ -48,6 +48,3 @@ Thumbs.db
 .env
 .env.local
 
-# SellerSprite script output (generated reports / raw data)
-scripts/output/
-**/scripts/output/

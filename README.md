@@ -27,8 +27,7 @@
 │           ├── README.md             # 技能英文说明
 │           ├── comprehensive/        # 10 个综合分析工作流
 │           ├── tactical/             # 17 张战术选品策略卡
-│           ├── reference/            # MCP 工具参数参考（含 43 工具清单）
-│           └── scripts/              # 示例/工具脚本（非必需）
+│           └── reference/            # MCP 工具参数参考（含 43 工具清单）
 └── README.md                         # 本文件
 ```
 
@@ -38,7 +37,6 @@
 
 - [Claude Code](https://claude.ai/code) CLI
 - 卖家精灵账号 + API 密钥（secret key）
-- （仅跑脚本时需要）Python 3
 
 ---
 
@@ -192,25 +190,6 @@ claude
 报告四要素：**筛选口径 → KPI 摘要 → 多维分析 → 分级结论**。
 
 ---
-
-## 脚本（可选，非必需）
-
-`scripts/` 是作者跑真实案例时留下的示例/工具脚本，**不是技能的必需组件**。日常使用直接下命令即可，无需跑脚本。
-
-```bash
-export SELLERSPRITE_SECRET_KEY="你的密钥"
-export SELLERSPRITE_OUT_DIR="./output"          # 默认 scripts/output/
-
-python3 scripts/mcp_call.py product_node '{"request":{"marketplace":"US","keyword":"yoga mat"}}'
-python3 scripts/lavalier_analysis.py        # 类目全景
-python3 scripts/keyword_research.py         # 关键词研究
-python3 scripts/competitor_analysis.py      # 竞品拆解
-python3 scripts/review_analysis.py          # 评论分析
-python3 scripts/tactical_strategies.py      # 战术卡批量跑
-python3 scripts/dji_pocket3_analysis.py     # DJI Pocket 3 综合案例
-```
-
-环境变量：`SELLERSPRITE_SECRET_KEY`、`SELLERSPRITE_MCP_URL`、`SELLERSPRITE_OUT_DIR`、`SELLERSPRITE_NODE_ID`、`SELLERSPRITE_ASIN`。
 
 ---
 
