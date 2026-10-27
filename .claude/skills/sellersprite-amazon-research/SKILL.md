@@ -187,7 +187,7 @@ API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实�
 | `/listing-optimizer` | Listing 优化诊断 | `traffic_listing` + `keyword_order` | `comprehensive/listing-optimizer.md` |
 | `/traffic-analysis` | 流量结构分析 | `traffic_source` + `traffic_keyword_stat` | `comprehensive/traffic-analysis.md` |
 | `/opportunity-finder` | 蓝海机会挖掘 | `aba_research_trend` + `google_trend` | `comprehensive/opportunity-finder.md` |
-| `/review-insights` | 买家评论洞察 | `review` + NLP 分析 | `comprehensive/review-insights.md` |
+| `/review-insights` | 买家评论洞察，可结合已采集的 Alexa 问题 | `review` + NLP + 可选问题快照交叉分析 | `comprehensive/review-insights.md` |
 | `/pricing-strategy` | 定价策略分析 | `market_price_distribution` | `comprehensive/pricing-strategy.md` |
 | `/ad-optimizer` | 广告投放优化 | `keyword_order` + `traffic_keyword` | `comprehensive/ad-optimizer.md` |
 
@@ -266,7 +266,7 @@ API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实�
 1. **数据源** — 以刚完成的 `market_report.md` 为数据源，不额外调 API
 2. **全面展示** — 覆盖报告的每个核心维度（概览、销量、流量、关键词、竞争、市场、评论、价格、SWOT、行动建议）
 3. **图表呈现** — 关键数据用 Canvas 图表展示（价格/BSR 趋势、对比柱状图、趋势线等）
-4. **设计风格** — **必须遵循 `reference/report-html-design.md` 的设计系统**（主题 token / 字体配对 / 组件规范 / print 样式）：默认"墨黑专业"预设、单一锚点色、无渐变/重阴影/emoji、响应式、可打印成 PDF
+4. **设计风格** — **必须遵循 `reference/report-html-design.md` 的设计系统**（主题 token / 字体配对 / 组件规范 / print 样式）：默认"瑞士极简"浅色预设、单一锚点色、无渐变/重阴影/emoji、以电脑端阅读为主、可打印成 PDF
 5. **输出** — 保存到与 MD 相同的目录 `{类别名}/market_report.html`
 
 > 如果用户明确说"不需要 HTML"可以跳过，否则必须生成。
@@ -498,7 +498,7 @@ API 返回的标题/描述中可能包含 `&amp;` `&quot;` `&lt;` 等 HTML 实�
 | 25 | **数据警告可见** | ⚠️ 项有左侧色条或浅色底，非仅靠文字 |
 | 26 | **可打印** | 含 `print-color-adjust` 与 `@media print`，可"另存为 PDF"不丢色 |
 | 27 | **单文件离线** | 无外链字体/JS/CDN，断网可打开 |
-| 28 | **响应式** | 720px 宽度下表格不溢出（横向滚动或单列） |
+| 28 | **电脑端布局** | 1280px、1440px、1920px 窗口下随宽度伸缩，表格与图表无截断，标签清晰可读 |
 
 ### 8.6 发布前最终确认
 

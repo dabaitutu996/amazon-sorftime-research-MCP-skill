@@ -18,21 +18,22 @@
 ```css
 :root{
   /* 中性色 */
-  --bg:#0f1115; --surface:#171a21; --surface-2:#1e222b;
-  --border:rgba(255,255,255,.10);
-  --text:#e8eaed; --text-muted:#9aa0a6; --text-faint:#6b7280;
+  color-scheme:light;
+  --bg:#ffffff; --surface:#fafafa; --surface-2:#f0f0ee;
+  --border:#d4d4d2;
+  --text:#202124; --text-muted:#555555; --text-faint:#606060;
   /* 锚点色（每份报告只选一个） */
-  --accent:#4c9aff; --accent-ink:#0b1220;
+  --accent:#0033a0; --accent-ink:#ffffff;
   /* 图表色板（顺序取用，勿随意增删） */
-  --c1:var(--accent); --c2:#8b5cf6; --c3:#22c55e; --c4:#f59e0b; --c5:#ef4444; --c6:#14b8a6;
+  --c1:var(--accent); --c2:#7c3aed; --c3:#15803d; --c4:#b45309; --c5:#b91c1c; --c6:#0f766e;
   /* 语义色 */
-  --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444;
+  --ok:#15803d; --warn:#b45309; --bad:#b91c1c;
   /* 字体（系统栈，离线可用） */
   --serif:Georgia,"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
   /* 尺度 */
-  --maxw:1080px; --radius:10px; --gap:clamp(16px,3vw,32px);
+  --maxw:1440px; --radius:10px; --gap:32px;
 }
 ```
 
@@ -40,16 +41,17 @@
 
 | 预设 | 适用 | --bg / --surface | --text | --accent |
 |------|------|------------------|--------|----------|
-| **A 墨黑专业**（默认） | 通用数据报告 | `#0f1115` / `#171a21` | `#e8eaed` | `#4c9aff` |
+| **A 墨黑专业**（仅明确要求深色时使用） | 深色演示 | `#0f1115` / `#171a21` | `#e8eaed` | `#4c9aff` |
 | **B 米白编辑** | 打印/汇报、长阅读 | `#f7f6f3` / `#ffffff` | `#1f1f23` | `#c9a45a` |
-| **C 瑞士极简** | 数据/技术向 | `#ffffff` / `#fafafa` | `#111111` | `#0033a0` |
+| **C 瑞士极简**（默认） | 电脑端数据报告、长阅读 | `#ffffff` / `#fafafa` | `#202124` | `#0033a0` |
 
-> 预设 B/C 为浅色主题：`--border` 改 `rgba(0,0,0,.08)`，`--text-muted` 改 `#6b6b6b`。
+> 默认浅色 token 已在上方完整给出；全文保持浅色，不交替黑底区块，不跟随系统暗色模式。切换深色须同步调整全部中性色与图表标签，不能仅替换背景。
 
 ## 4. 字体配对
 
 - 标题（h1/h2）：`var(--serif)`，字重 700，`letter-spacing:-0.01em`，`line-height:1.15`
-- 正文/表格：`var(--sans)`，`line-height:1.6`，正文 `max-width:72ch`
+- 正文：`var(--sans)`，`font-size:16px`、`line-height:1.7`；正文段落 `max-width:72ch`，中文长段落可限制为 `40em`
+- 表格：`var(--sans)`，`font-size:14px` 至 `15px`；不要用正文行长限制表格或图表
 - 数字/百分比/元数据：`var(--mono)`（KPI 数值、BSR、ASIN、价格）
 
 ## 5. 组件规范
@@ -69,17 +71,20 @@
 - 取色按 `--c1..--c6`，单图系列 ≤5
 - 网格线 `--border`，轴标签 `--text-faint`，数值标签 mono
 - 必带标题 + 单位 + 数据来源脚注；趋势图带坐标轴
+- 坐标轴、关键词及数值标签至少 14px；调整左侧标签区域和图表高度，避免关键词或数值截断、重叠；重绘时读取主题 token，避免硬编码深色主题文字
 - 按 `devicePixelRatio` 缩放，避免模糊
 
 ### 5.4 标注 / 分级
 - ⚠️ 数据警告：左侧 `3px solid var(--warn)` 色条 + `rgba(245,158,11,.08)` 底
 - 结论分级 pill：推荐=`--ok` / 谨慎=`--warn` / 不推荐=`--bad`
 
-## 6. 布局与响应式
+## 6. 电脑端布局
 
 - 主内容 `max-width:var(--maxw); margin:0 auto; padding:var(--gap)`
+- 使用 `box-sizing:border-box`；嵌入综合报告时，模块 `main` 使用 `max-width:none; width:100%`，避免外层加宽后仍被内部 1080px 限制
+- 表格、图表和 KPI 占满可用内容宽度，正文段落单独限制行长；长表格允许局部横向滚动
 - 区块间距 ≥ `var(--gap)`；用留白或 `1px solid var(--border)` 分隔，**不套卡片**
-- `@media (max-width:720px)`：KPI 单列、表格 `overflow-x:auto`、字号略降
+- 面向电脑端，优先检查 1280px、1440px、1920px 窗口；无需新增手机专用布局或缩小电脑端字号
 - 报告 >8 屏时建议加锚点目录
 
 ## 7. 动效（克制）
@@ -93,7 +98,7 @@
 ```css
 html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 @media print{
-  :root{ --bg:#fff; --surface:#fff; --text:#111; }
+  :root{ --bg:#fff; --surface:#fff; --surface-2:#f0f0ee; --text:#111; --text-muted:#555; --text-faint:#606060; --border:#d4d4d2; }
   .no-print{ display:none!important; }
   table,.kpi{ break-inside:avoid; }
   h2,h3{ break-after:avoid; }
@@ -123,5 +128,5 @@ html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 - [ ] 数字列 mono + 右对齐；千分位/小数位符合 §8.4
 - [ ] ⚠️ 警告项有可见色条/底色
 - [ ] 含 `print-color-adjust` 与 `@media print`
-- [ ] 720px 宽度下不溢出
+- [ ] 1280px、1440px、1920px 电脑窗口下内容随宽度伸缩，表格和图表无截断；正文、表格与图表标签字号可读
 - [ ] 单文件、无外链字体/JS（离线可开）
